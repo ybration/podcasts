@@ -1,0 +1,37 @@
+[
+  {
+    "rss_url": "https://feeds.npr.org/510289/podcast.xml",
+    "title": "Planet Money",
+    "categories": ["Business", "Economics", "News"],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.serialpodcast.org/serial",
+    "title": "Serial",
+    "categories": ["True Crime", "Documentary"],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.simplecast.com/54nAGcIl",
+    "title": "The Daily",
+    "categories": ["News", "Politics"],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.99percentinvisible.org/99percentinvisible",
+    "title": "99% Invisible",
+    "categories": ["Design", "Architecture", "Arts"],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.feedburner.com/sciencefriday",
+    "title": "Science Friday",
+    "categories": ["Science", "Technology", "Education"],
+    "language": "en",
+    "country": "US"
+  }
+]

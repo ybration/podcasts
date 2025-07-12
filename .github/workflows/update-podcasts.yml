@@ -1,0 +1,52 @@
+name: Update Podcast Metadata
+
+on:
+  # Run daily at 6:00 AM UTC
+  schedule:
+    - cron: '0 6 * * *'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+  
+  # Run on pushes to main branch (for testing)
+  push:
+    branches: [ main ]
+    paths: 
+      - 'feeds.json'
+      - 'update_podcasts.py'
+      - '.github/workflows/update-podcasts.yml'
+
+jobs:
+  update-podcasts:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run podcast update script
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      run: |
+        python update_podcasts.py
+    
+    - name: Upload logs as artifact (on failure)
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: podcast-update-logs
+        path: |
+          *.log
+        retention-days: 7
