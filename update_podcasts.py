@@ -46,10 +46,9 @@ class SupabaseClient:
         """Insert or update data in Supabase table"""
         url = f"{self.url}/rest/v1/{table}"
         
-        # Use upsert with conflict resolution
+        # Use proper upsert with conflict resolution
         headers = self.headers.copy()
-        if conflict_column:
-            headers['Prefer'] = f'resolution=merge-duplicates'
+        headers['Prefer'] = 'resolution=merge-duplicates'
         
         try:
             response = requests.post(url, json=data, headers=headers, timeout=30)
