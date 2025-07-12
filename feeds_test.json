@@ -1,0 +1,135 @@
+[
+  {
+    "rss_url": "https://feeds.npr.org/510289/podcast.xml",
+    "title": "Planet Money",
+    "categories": [
+      "Business",
+      "Economics",
+      "News"
+    ],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.serialpodcast.org/serial",
+    "title": "Serial",
+    "categories": [
+      "True Crime",
+      "Documentary"
+    ],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.simplecast.com/54nAGcIl",
+    "title": "The Daily",
+    "categories": [
+      "News",
+      "Politics"
+    ],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.99percentinvisible.org/99percentinvisible",
+    "title": "99% Invisible",
+    "categories": [
+      "Design",
+      "Architecture",
+      "Arts"
+    ],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://feeds.feedburner.com/sciencefriday",
+    "title": "Science Friday",
+    "categories": [
+      "Science",
+      "Technology",
+      "Education"
+    ],
+    "language": "en",
+    "country": "US"
+  },
+  {
+    "rss_url": "https://markalanwilliams.libsyn.com/rss",
+    "title": "Christianity Questions and Answers",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "https://anchor.fm/s/19ccb320/podcast/rss",
+    "title": "Rahdo Talks Through",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "http://www.snec.org.uk/site/itunes",
+    "title": "St Neots Evangelical Church Sermons",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "http://feeds.soundcloud.com/users/soundcloud:users:150466516/sounds.rss",
+    "title": "IdiotSpeakShow",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "https://audioboom.com/channels/4597972.rss",
+    "title": "Conciertos en el Living",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "https://anchor.fm/s/212c47d4/podcast/rss",
+    "title": "OriginALL",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "http://feeds.feedburner.com/DirtBikePodcast",
+    "title": "2017 U.S. Dirt Bike Events",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "https://anchor.fm/s/28f184c/podcast/rss",
+    "title": "RNG Show",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "https://galaktacus.libsyn.com/rss",
+    "title": "Galaktacus",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  },
+  {
+    "rss_url": "https://sportsfromherperspective.podomatic.com/rss2.xml",
+    "title": "Sports From Her Perspective",
+    "categories": [
+      "General"
+    ],
+    "language": "en"
+  }
+]
