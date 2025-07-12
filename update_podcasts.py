@@ -135,7 +135,11 @@ class PodcastProcessor:
         
         # Check for explicit content
         if hasattr(feed.feed, 'itunes_explicit') and feed.feed.itunes_explicit:
-            podcast_data['is_explicit'] = feed.feed.itunes_explicit.lower() in ['yes', 'true']
+            explicit_val = feed.feed.itunes_explicit
+            if isinstance(explicit_val, bool):
+                podcast_data['is_explicit'] = explicit_val
+            elif isinstance(explicit_val, str):
+                podcast_data['is_explicit'] = explicit_val.lower() in ['yes', 'true']
         
         # Get latest episode date
         if feed.entries:
@@ -191,7 +195,11 @@ class PodcastProcessor:
         
         # Check for explicit content
         if hasattr(entry, 'itunes_explicit') and entry.itunes_explicit:
-            episode_data['is_explicit'] = entry.itunes_explicit.lower() in ['yes', 'true']
+            explicit_val = entry.itunes_explicit
+            if isinstance(explicit_val, bool):
+                episode_data['is_explicit'] = explicit_val
+            elif isinstance(explicit_val, str):
+                episode_data['is_explicit'] = explicit_val.lower() in ['yes', 'true']
         
         # Extract episode image
         if hasattr(entry, 'image') and 'href' in entry.image:
