@@ -100,13 +100,14 @@ class PodcastProcessor:
         except (ValueError, IndexError):
             return None
     
-    def parse_date(self, date_str: str) -> Optional[datetime]:
-        """Parse various date formats to datetime"""
+    def parse_date(self, date_str: str) -> Optional[str]:
+        """Parse various date formats to ISO string"""
         if not date_str:
             return None
         
         try:
-            return date_parser.parse(date_str).replace(tzinfo=timezone.utc)
+            dt = date_parser.parse(date_str).replace(tzinfo=timezone.utc)
+            return dt.isoformat()
         except (ValueError, TypeError):
             return None
     
@@ -133,7 +134,7 @@ class PodcastProcessor:
             podcast_data['image_url'] = feed.feed.logo
         
         # Check for explicit content
-        if hasattr(feed.feed, 'itunes_explicit'):
+        if hasattr(feed.feed, 'itunes_explicit') and feed.feed.itunes_explicit:
             podcast_data['is_explicit'] = feed.feed.itunes_explicit.lower() in ['yes', 'true']
         
         # Get latest episode date
@@ -189,7 +190,7 @@ class PodcastProcessor:
                 pass
         
         # Check for explicit content
-        if hasattr(entry, 'itunes_explicit'):
+        if hasattr(entry, 'itunes_explicit') and entry.itunes_explicit:
             episode_data['is_explicit'] = entry.itunes_explicit.lower() in ['yes', 'true']
         
         # Extract episode image
