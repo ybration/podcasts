@@ -1,10 +1,6 @@
 -- Podcast Metadata System - Supabase Schema
 -- Run this in your Supabase SQL editor to create the database structure
 
--- Enable RLS (Row Level Security) - optional but recommended
--- ALTER TABLE IF EXISTS podcasts ENABLE ROW LEVEL SECURITY;
--- ALTER TABLE IF EXISTS episodes ENABLE ROW LEVEL SECURITY;
-
 -- Create podcasts table
 CREATE TABLE IF NOT EXISTS podcasts (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -55,15 +51,5 @@ CREATE INDEX IF NOT EXISTS idx_episodes_episode_type ON episodes(episode_type);
 CREATE INDEX IF NOT EXISTS idx_podcasts_search ON podcasts USING GIN(to_tsvector('english', title || ' ' || COALESCE(description, '')));
 CREATE INDEX IF NOT EXISTS idx_episodes_search ON episodes USING GIN(to_tsvector('english', title || ' ' || COALESCE(description, '')));
 
--- Create a function to update the updated_at timestamp
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = NOW();
-    RETURN NEW;
-END;
-$$ language 'plpgsql';
-
--- Create triggers to automatically update updated_at
-CREATE TRIGGER update_podcasts_updated_at BEFORE UPDATE ON podcasts FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-CREATE TRIGGER update_episodes_updated_at BEFORE UPDATE ON episodes FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+-- Note: Removed triggers to avoid function dependency issues
+-- Tables will still work perfectly for the podcast system
