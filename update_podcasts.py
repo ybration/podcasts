@@ -16,7 +16,7 @@ import time
 import logging
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 
 import feedparser
 import requests
@@ -222,18 +222,25 @@ class PodcastProcessor:
             # Extract podcast metadata
             podcast_data = self.extract_podcast_metadata(feed, manual_data)
             
-            # Upload podcast data
-            if not self.supabase.upsert('podcasts', podcast_data, 'rss_url'):
-                logger.error(f"Failed to upload podcast data for: {rss_url}")
-                return False
+            # Check if podcast already exists  
+            podcast_records = self.supabase.select('podcasts', 'id', f'rss_url=eq.{quote(rss_url, safe="")}')
             
-            # Get podcast ID from database
-            podcast_records = self.supabase.select('podcasts', 'id', f'rss_url=eq.{rss_url}')
-            if not podcast_records:
-                logger.error(f"Failed to retrieve podcast ID for: {rss_url}")
-                return False
-            
-            podcast_id = podcast_records[0]['id']
+            if podcast_records:
+                # Podcast exists, get the ID
+                podcast_id = podcast_records[0]['id']
+                logger.info(f"Podcast already exists, updating: {podcast_data['title']}")
+            else:
+                # Insert new podcast
+                if not self.supabase.upsert('podcasts', podcast_data):
+                    logger.error(f"Failed to upload podcast data for: {rss_url}")
+                    return False
+                
+                # Get the newly created podcast ID
+                podcast_records = self.supabase.select('podcasts', 'id', f'rss_url=eq.{quote(rss_url, safe="")}')
+                if not podcast_records:
+                    logger.error(f"Failed to retrieve podcast ID for: {rss_url}")
+                    return False
+                podcast_id = podcast_records[0]['id']
             
             # Process episodes (limit to recent ones)
             episodes_processed = 0
